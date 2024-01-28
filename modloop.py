@@ -9,14 +9,9 @@ async def remove_mods():
             pavlov = PavlovRCON(config.IP_ADDRESS, config.PORT, config.PASSWORD)
 
             
-            response = await pavlov.send("UGCModList")
+            response = await pavlov.send("UGCClearModList")
             print(response)
 
-            if response["Successful"] and "ModList" in response:
-                for mod in response["ModList"]:
-                    
-                    remove_response = await pavlov.send(f"UGCRemoveMod {mod}")
-                    print(f"Removed {mod}: {remove_response}")
 
             
             await pavlov.send("Disconnect")
